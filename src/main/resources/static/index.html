@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>抢票工具</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+        <link rel="stylesheet" href="assets/css/reset.css">
+        <link rel="stylesheet" href="assets/css/supersized.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+    </head>
+
+    <body>
+<!---->
+        <div class="page-container">
+            <h1>抢票工具
+
+
+            </h1>
+            <br/>
+           <!-- <form action="/config" method="post" style="width: 100%;">-->
+                <div >
+                    <h2>抢票配置</h2>
+                    <input type="text" name="userName" class="userName" placeholder="12306账号">
+                    <input type="password" name="userPwd" class="userPwd" placeholder="12306密码">
+                    <input type="text" name="user" class="user" placeholder="抢票人">
+                    <input type="text" name="trains" class="trains" placeholder="车次">
+                    <input type="text" name="seats" class="seats" placeholder="类型">
+                    <input type="text" name="date" class="date" placeholder="时间">
+                    <input type="text" name="from" class="from" placeholder="出发地">
+                    <input type="text" name="to" class="to" placeholder="到达地">
+                    <input type="text" name="queryNum" class="queryNum" placeholder="抢票线程数">
+
+                </div>
+                <div >
+                    <h2>通知配置</h2>
+
+                    <input type="text" name="emailHost" class="emailHost" placeholder="邮件">
+                    <input type="text" name="emailSender" class="emailSender" placeholder="发送人">
+                    <input type="text" name="emailUsername" class="emailUsername" placeholder="发送用户">
+                    <input type="password" name="emailPassword" class="emailPassword" placeholder="密码">
+                    <input type="text" name="emailReceiver" class="emailReceiver" placeholder="接收邮箱">
+
+                </div>
+
+
+                <button type="submit" id="refresh">刷新</button>
+                <div class="error"><span>+</span></div>
+            <!--</form>-->
+        </div>
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.8.2.min.js"></script>
+        <script src="assets/js/supersized.3.2.7.min.js"></script>
+        <script src="assets/js/supersized-init.js"></script>
+        <script src="assets/js/scripts.js"></script>
+		 <script>
+		  $(document).ready(function(){
+			// 开始写 jQuery 代码...
+			
+			$.get('/getConfig',function(data){
+			    var t = JSON.parse(data);
+
+			    $(".user").val(t.user);
+                $(".date").val(t.date);
+                $(".emailHost").val(t.emailHost);
+                $(".emailPassword").val(t.emailPassword);
+                $(".emailReceiver").val(t.emailReceiver);
+                $(".emailSender").val(t.emailSender);
+                $(".emailUsername").val(t.emailUsername);
+                $(".from").val(t.from);
+                $(".queryNum").val(t.queryNum);
+                $(".seats").val(t.seats);
+                $(".to").val(t.to);
+                $(".trains").val(t.trains);
+                $(".userName").val(t.userName);
+                $(".userPwd").val(t.userPwd);
+
+            });
+
+			$("#refresh").bind("click",function config() {
+                $.get('/config?user='+
+                    $(".user").val()+"&date="+
+                    $(".date").val()+"&emailHost="+
+                    $(".emailHost").val()+"&emailPassword="+
+                    $(".emailPassword").val()+"&emailReceiver="+
+                    $(".emailReceiver").val()+"&emailSender="+
+                    $(".emailSender").val()+"&emailUsername="+
+                    $(".emailUsername").val()+"&from="+
+                    $(".from").val()+"&queryNum="+
+                    $(".queryNum").val()+"&seats="+
+                    $(".seats").val()+"&to="+
+                    $(".to").val()+"&trains="+
+                    $(".trains").val()+"&userName="+
+                    $(".userName").val()+"&userPwd="+
+                    $(".userPwd").val()
+                    ,function(data){
+                        alert(data);
+                    })
+            });
+
+ 
+			});
+		 </script>
+
+    </body>
+
+</html>
+
