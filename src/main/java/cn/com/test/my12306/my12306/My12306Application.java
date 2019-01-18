@@ -1,20 +1,11 @@
 package cn.com.test.my12306.my12306;
 
-import cn.com.test.my12306.my12306.core.ClientTicket;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableScheduling;
-
-import java.util.concurrent.CountDownLatch;
 
 @SpringBootApplication
-@EnableScheduling
 @Configuration
 @EnableAutoConfiguration
 public class My12306Application{// implements CommandLineRunner
